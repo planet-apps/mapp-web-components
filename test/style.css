@@ -1,0 +1,8 @@
+mapp-menu:not(:defined) {
+  display: none;
+  visibility: hidden;
+}
+
+@view-transition {
+  navigation: auto;
+}

@@ -1,4 +1,4 @@
-# Ianua Web Components
+# Mapp Web Components
 
 To view the web components, run:
 

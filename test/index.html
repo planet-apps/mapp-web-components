@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Test</title>
+    <script type="module" src="../dist/lib/mapp-web-components.min.js"></script>
+    <style>
+      /* mapp-menu:not(:defined) {
+        display: none;
+        visibility: hidden;
+      } */
+
+      @view-transition {
+        navigation: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <mapp-menu supportuser="true" username="Bonnie Green" userpic="profile.jpg" activeitem="Mapps Dashboard" menuconfig='{"items": [{"title": "Mapps Dashboard", "url": "index.html", "icon": "favicon.png"}, {"title": "Overview", "url": "overview.html", "icon": "pie.svg"}, {"title": "Sales Orders", "url": "#", "icon": "sales.svg", "subitems": [{"title": "Test", "url": "#"}]},{"title": "Analytics", "url": "#"},{"title": "Settings", "url": "#", "icon": "settings.svg"}]}'>
+      <h1>Mapps Dashboard</h1>
+      <div>Your sales orders analytics dashboard.</div>
+      <br /><br />
+    </mapp-menu>
+  </body>
+</html>
