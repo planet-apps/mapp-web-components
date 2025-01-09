@@ -1,8 +1,8 @@
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf';
   import MappMenu from '../lib/MappMenu.wc.svelte';
-  import MappTable from '../lib/MappTable.svelte';
-  import MappInput from '../lib/MappInput.svelte';
+  import MappTable from '../lib/MappTable.wc.svelte';
+  import MappInput from '../lib/MappInput.wc.svelte';
   import MappSelect from '../lib/MappSelect.svelte';
   import { fn } from '@storybook/test';
 

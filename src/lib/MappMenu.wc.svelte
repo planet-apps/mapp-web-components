@@ -30,7 +30,7 @@
 </script>
 
 <div class="outer_frame">
-  <div class="left_menu">
+  <div class="left_menu" >
     <div class="menu_frame">
       {#each menuconfig.items as item, i}
         <!-- svelte-ignore a11y_consider_explicit_label -->

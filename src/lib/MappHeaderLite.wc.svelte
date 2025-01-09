@@ -2,7 +2,7 @@
 <svelte:options customElement="mapp-headerlite" />
 
 <script>
-  import MappInput from "./MappInput.svelte";
+  import MappInput from "./MappInput.wc.svelte";
 
   const { title = "Apint.org", supportuser = false, username = "", userpic = ""} = $props();
   let searchInput = "";

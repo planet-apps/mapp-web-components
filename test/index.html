@@ -11,13 +11,43 @@
       @view-transition {
         navigation: auto;
       }
+
+      @keyframes move-out {
+        from {
+          opacity: 1;
+        }
+
+        to {
+          opacity: .99;
+        }
+      }
+
+      @keyframes move-in {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Apply the custom animation to the old and new page states */
+      ::view-transition-old(root) {
+        animation: 0.3s ease-in both move-out;
+      }
+
+      ::view-transition-new(root) {
+        animation: 0.3s ease-in both move-in;
+      }
     </style>
   </head>
   <body>
     <mapp-menu supportuser="true" username="Bonnie Green" userpic="profile.jpg" activeitem="Mapps Dashboard" menuconfig='{"items": [{"title": "Mapps Dashboard", "url": "index.html", "icon": "favicon.png"}, {"title": "Overview", "url": "overview.html", "icon": "pie.svg"}, {"title": "Sales Orders", "url": "#", "icon": "sales.svg", "subitems": [{"title": "Test", "url": "#"}]},{"title": "Analytics", "url": "#"},{"title": "Settings", "url": "#", "icon": "settings.svg"}]}'>
       <h1>Mapps Dashboard</h1>
-      <div>Your sales orders analytics dashboard.</div>
+      <div>Your micro-apps analytics dashboard.</div>
       <br /><br />
     </mapp-menu>
   </body>
-</html>
+
+  </html>
