@@ -11,9 +11,11 @@
   });
 </script>
 
-<Story name="Table simple" args={{linkPrefix: "https://google.com/", linkColumnName: "Id", headers: ["Id", "Created by", "Total", "Status"], rows: [
+<Story name="Table simple" args={{linkprefix: "https://google.com/", linkcolumnname: "Id", headers: ["Id", "Created by", "Total", "Status"], rows: [
   { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}, 
   { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}, 
   { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}, 
   { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}, 
   { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}]}}></Story>
+
+<Story name="Table empty" args={{ headers: ["Id", "Created by", "Total", "Status"]}}></Story>

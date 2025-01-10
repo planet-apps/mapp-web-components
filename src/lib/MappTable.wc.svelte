@@ -5,21 +5,31 @@
 </script>
 
 <script lang="ts">
-  const {
+  let {
     headers = [],
-    headersSearchable = [],
+    headerssearchable = [],
     rows = [],
-    linkPrefix = "",
-    linkColumnName = "",
+    linkprefix = "",
+    linkcolumnname = "",
     update = undefined,
   }: {
     headers: string[];
-    headersSearchable: string[];
+    headerssearchable: string[];
     rows: any[];
-    linkPrefix: string;
-    linkColumnName: string;
+    linkprefix: string;
+    linkcolumnname: string;
     update: undefined | ((e: { detail: { rowIndex: number } }) => void);
   } = $props();
+
+  if (typeof(headers) == "string") {
+    headers = JSON.parse(headers);
+  }
+  if (typeof(headerssearchable) == "string") {
+    headerssearchable = JSON.parse(headerssearchable);
+  }
+  if (typeof(rows) == "string") {
+    rows = JSON.parse(rows);
+  }
 
   let rowsDisplay: any[] = $state(rows);
   let filterInput: string = $state("");
@@ -33,8 +43,8 @@
 
         for (let header of headers) {
           if (
-            headersSearchable.length === 0 ||
-            headersSearchable.includes(header)
+            headerssearchable.length === 0 ||
+            headerssearchable.includes(header)
           ) {
             if (
               row[header]
@@ -117,7 +127,7 @@
         >
           {#each Object.entries(row) as col, i}
             <td
-              ><a class="table_row" href={linkPrefix + row[linkColumnName]}
+              ><a class="table_row" href={linkprefix + row[linkcolumnname]}
                 >{col[1]}</a
               ></td
             >
