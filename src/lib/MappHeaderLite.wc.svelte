@@ -4,13 +4,13 @@
 <script>
   import MappInput from "./MappInput.wc.svelte";
 
-  const { title = "Apint.org", supportuser = false, username = "", userpic = ""} = $props();
+  const { title = "Apint.org", searchicon = "", supportuser = false, username = "", userpic = ""} = $props();
   let searchInput = "";
 </script>
 
 <div class="header">
   <div style="width: 364px;" >
-    <MappInput icon="search.svg" placeholder="Search" input={searchInput}></MappInput>
+    <MappInput icon={searchicon} placeholder="Search" input={searchInput}></MappInput>
     <span>{searchInput}</span>
   </div>
   <div>
@@ -22,7 +22,7 @@
         <span class="user_name">{username}</span>
       </span>
     {:else if supportuser}
-      <span>logged out</span>
+      <span></span>
     {/if}
   </div>
 </div>

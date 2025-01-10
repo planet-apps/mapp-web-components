@@ -8,6 +8,7 @@
   let {
     title = "Mapp",
     icon = "",
+    searchicon = "",
     supportuser = true,
     username = "",
     userpic = "",
@@ -79,7 +80,7 @@
     </div>
   </div>
   <div class="right_panel">
-    <MappHeaderLite supportuser={supportuser} username={username} userpic={userpic}></MappHeaderLite>
+    <MappHeaderLite {searchicon} supportuser={supportuser} username={username} userpic={userpic}></MappHeaderLite>
     <div class="right_panel_content">
       <slot />
     </div>
