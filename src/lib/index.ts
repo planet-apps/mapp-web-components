@@ -4,5 +4,6 @@ import MappHeaderLite from "./MappHeaderLite.wc.svelte";
 import MappMenu from "./MappMenu.wc.svelte";
 import MappInput from "./MappInput.wc.svelte";
 import MappTable from "./MappTable.wc.svelte";
+import ElegantBuffet from "./mountainview/ElegantBuffet.wc.svelte";
 
-export { MappButton, MappHeaderLite, MappMenu, MappInput, MappTable };
+export { MappButton, MappHeaderLite, MappMenu, MappInput, MappTable, ElegantBuffet };

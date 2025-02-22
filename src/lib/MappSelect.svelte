@@ -7,7 +7,7 @@
     type="text",
     placeholder = "",
     options = [],
-    input = "",
+    input = $bindable(""),
     style=""
   } = $props();
 </script>
@@ -21,7 +21,7 @@
   <div class="input_box">
     {#if icon}
       <span class="input_icon">
-        <img width="16px" src={icon} />
+        <img width="16px" src={icon} alt="" />
       </span>
     {/if}
 
@@ -37,6 +37,7 @@
   .input_frame {
     padding-right: 24px;
     margin-bottom: 14px;
+    width: 280px;
   }
 
   .input_label {
