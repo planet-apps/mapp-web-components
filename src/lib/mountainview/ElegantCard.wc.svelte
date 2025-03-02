@@ -2,9 +2,9 @@
 
 <script lang="ts">
   let {
-    card = {
-      topLeftLabel: "",
-      topRightIcons: [],
+    item = {
+      dateTime: "",
+      categories: [],
       imageUrl: "",
       title: "",
       authorImageUrl: "",
@@ -12,7 +12,7 @@
       authorUrl: "",
       description: "",
       link: "",
-      lowerRightIcons: []
+      types: []
     }
   } = $props();
 </script>
@@ -20,31 +20,28 @@
 <div class="card_frame">
 
   <div class="top_left_label">
-    <span>{card.topLeftLabel}</span>
+    <span>{item.dateTime}</span>
     <div class="top_right_icons">
-      {#each card.topRightIcons as topRightIcon}
+      {#each item.categories as topRightIcon}
         <img src={topRightIcon.url} alt="type icon" title={topRightIcon.title}/>
       {/each}
-      <!-- <img src="https://static-00.iconduck.com/assets.00/kubernetes-icon-1024x993-7mg2wdjb.png" alt="type icon" title="Kubernetes"/>
-      <img src="https://static-00.iconduck.com/assets.00/kubernetes-icon-1024x993-7mg2wdjb.png" alt="type icon" title="Kubernetes"/>
-      <img src="https://static-00.iconduck.com/assets.00/kubernetes-icon-1024x993-7mg2wdjb.png" alt="type icon" title="Kubernetes"/> -->
     </div>
   </div>
 
-  <img class="header_image" src={card.imageUrl} alt="header preview"/>
+  <img class="header_image" src={item.imageUrl} alt="header preview"/>
 
-  <a href={card.link} class="title">{card.description}</a>
+  <a href={item.link} class="title">{item.description}</a>
 
-  <a class="author" href={card.authorUrl} target="_blank">
-    <img src={card.authorImageUrl} alt="profile"/>
-    {card.authorName}
+  <a class="author" href={item.authorUrl} target="_blank">
+    <img src={item.authorImageUrl} alt="profile"/>
+    {item.authorName}
   </a>
   <div class="footer">
-    <div class="description">{card.description}</div>
+    <div class="description">{item.description}</div>
     <div class="link">
-      <a href={card.link} target="_blank">Open asset ↗</a>
+      <a href={item.link} target="_blank">Open asset ↗</a>
       <div class="type_box">
-        {#each card.lowerRightIcons as lowerRightIcon}
+        {#each item.types as lowerRightIcon}
           <img src={lowerRightIcon.url} alt="type icon" title={lowerRightIcon.title}/>
         {/each}
       </div>

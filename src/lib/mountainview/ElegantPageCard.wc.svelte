@@ -1,4 +1,4 @@
-<svelte:options customElement="mountainview-elegant-menupage" />
+<svelte:options customElement="mountainview-elegant-cardpage" />
 
 <script lang="ts">
 import { fade, slide, fly, blur, scale } from 'svelte/transition';
@@ -6,14 +6,14 @@ import { linear } from 'svelte/easing';
 import ElegantFilterTypes from "./ElegantFilterTypes.wc.svelte";
 import ElegantCard from "./ElegantCard.wc.svelte";
 
-let {cards} = $props();
+let {items} = $props();
 
 </script>
 
 <div class="menu_frame">
 
-  {#each cards as card}
-    <ElegantCard {card}/>
+  {#each items as item}
+    <ElegantCard {item}/>
   {/each}
 
 </div>

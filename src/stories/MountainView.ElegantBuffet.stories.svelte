@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import './mountainview.css';
   import { defineMeta } from '@storybook/addon-svelte-csf';
   import ElegantBuffet from '$lib/mountainview/ElegantBuffet.wc.svelte';
@@ -9,28 +9,14 @@
     title: 'Stories/MountainView/ElegantBuffet',
     component: ElegantBuffet,
     tags: ['autodocs'],
-    argTypes: {
-      label: { control: 'text' },
-      size: {
-        control: { type: 'select' },
-        options: ['small', 'medium', 'large'],
-      },
-      type: {
-        control: { type: 'select' },
-        options: ['primary', 'secondary'],
-      },
-    },
-    args: {
-      onClick: fn(),
-    }
+    argTypes: {},
+    args: {}
   });
-</script>
 
-<!-- More on writing stories with args: https://storybook.js.org/docs/writing-stories/args -->
-<Story name="Primary" args={{ title: "CommonSky", logoUrl: 'https://www.svgrepo.com/show/504880/sky-children-of-the-light.svg', rightMenus: [
+  const menus = $state([
   {
     title: "User menu",
-    imageUrl: "https://plus.unsplash.com/premium_photo-1683121366070-5ceb7e007a97?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D",
+    imageUrl: "/profile.jpg",
     imageShape: "round",
     items: [
       {
@@ -44,7 +30,7 @@
     ]
   },  {
     title: "Site menu",
-    imageUrl: "https://www.svgrepo.com/show/514293/windows.svg",
+    imageUrl: "/site.svg",
     items: [
       {
         title: "Log out",
@@ -55,7 +41,98 @@
         url: "https://google.com"
       }
     ]
-  }]}}>
+  }]);
+
+  const items = $state([
+    {
+      dateTime: "2 days ago",
+      categories: [
+        {
+          title: "Kubernetes",
+          url: "/kubernetes.png"
+        }
+      ],
+      imageUrl: "/dino.jpg",
+      title: "A New Frontier of Security: Creating Safe and Secure AI Models",
+      authorImageUrl: "/profile.jpg",
+      authorName: "Chaim Gartenberg",
+      authorUrl: "https://google.com",
+      description: "Solve a prehistoric Google mystery and learn the secret origins of our oldest-and largest-Googler: Stan the T.rex.and learn the secret origins of our oldest-and largest-Googler: Stan the T.rex.and learn the secret origins of our oldest-and largest-Googler: Stan the T.rex.",
+      link: "https://google.com",
+      types: [
+        {
+          title: "Kubernetes",
+          url: "/kubernetes.png"
+        }
+      ]
+    },
+    {
+      dateTime: "2 days ago",
+      categories: [
+        {
+          title: "Kubernetes",
+          url: "/kubernetes.png"
+        }
+      ],
+      imageUrl: "/dino.jpg",
+      title: "A New Frontier of Security: Creating Safe and Secure AI Models",
+      authorImageUrl: "/profile.jpg",
+      authorName: "Chaim Gartenberg",
+      authorUrl: "https://google.com",
+      description: "Solve a prehistoric Google mystery and learn the secret origins of our oldest-and largest-Googler: Stan the T.rex.and learn the secret origins of our oldest-and largest-Googler: Stan the T.rex.and learn the secret origins of our oldest-and largest-Googler: Stan the T.rex.",
+      link: "https://google.com",
+      types: [
+        {
+          title: "Kubernetes",
+          url: "/kubernetes.png"
+        }
+      ]
+    }]);
+
+  const categories = $state([
+    {name: "Apigee X", letter: "X"}, 
+    {name: "OPDK", letter: "O"},
+    {name: "Kubernetes", letter: "K"},
+    {name: "Hybrid", letter: "H"} 
+  ]);
+
+  const types = $state([
+    {name: "Docs", icon: "🕮"},
+    {name: "Tools", icon: "🖰"},
+    {name: "Recordings", icon: "🖭"}
+  ]);
+
+  const sorts = $state(["Latest", "Most claps", "Most comments"]);
+
+  let search = $state("");
+
+  function onSearch(input: string) {
+    console.log("Input: " + input);
+
+    let results: string[] = [];
+
+    for (let i=0; i<input.length; i++) {
+      results.push("Test " + i);
+    }
+
+    return results;
+  }
+
+  function onCategorySelect(categoryState: {[key: string]: boolean}) {
+    console.log("Category select: " + JSON.stringify(categoryState));
+  }
+
+  function onTypeSelect(typeState: {[key: string]: boolean}) {
+    console.log("Type select: " + JSON.stringify(typeState));
+  }
+
+  function onSortSelect(sort: string) {
+    console.log("Sort select: " + sort);
+  }
+</script>
+
+<!-- More on writing stories with args: https://storybook.js.org/docs/writing-stories/args -->
+<Story name="Primary" args={{ title: "CommonSky", logoUrl: '/favicon.png', menus: menus, search: search, onSearch: onSearch, items: items, categories: categories, onCategorySelect: onCategorySelect, types: types, onTypeSelect: onTypeSelect, sorts: sorts, onSortSelect: onSortSelect}}>
 </Story>
 
 <style>

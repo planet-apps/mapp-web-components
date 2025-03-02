@@ -3,18 +3,20 @@
 <script lang="ts">
   import ElegantSearch from "./ElegantSearch.wc.svelte";
 
-  let { height="80px", input = $bindable(), onInput } = $props();
+  let { height="80px", logoUrl = "", search = $bindable(), onSearch } = $props();
 
 </script>
 
 <div class="hero">
   <div class="hero_logo" style={`height: ${height};`}>
-    <img height={`${height}`} alt="logo" src="https://www.shutterstock.com/image-vector/vector-cat-face-minimalist-adorable-600nw-2426797721.jpg" />
+    {#if logoUrl}
+      <img class="hero_image" height={`${height}`} alt="logo" src={logoUrl} />
+    {/if}
     <div class="hero_logo_text">CommonSky</div>
   </div>
 
   <div class="hero_search">
-    <ElegantSearch bind:input={input} {onInput} />
+    <ElegantSearch bind:search={search} {onSearch} />
   </div>
 
 </div>
@@ -33,6 +35,11 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+  }
+
+  .hero_image {
+    width: 50px;
+    height: 50px;
   }
 
   .hero_logo_text {

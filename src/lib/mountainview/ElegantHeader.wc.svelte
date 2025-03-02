@@ -6,7 +6,7 @@
   let {
     title="",
     logoUrl="",
-    rightMenus=[]
+    menus=[]
   } = $props();
 
   let menuVisibleFlags: {[key: string]: boolean} = $state({});
@@ -49,7 +49,7 @@
     <a href="https://google.com" target="_blank" class="title">
 
       {#if logoUrl}
-        <img class="title_logo" alt="logo" width="36px" style="padding: 6px;" src={logoUrl} />
+        <img class="title_logo" alt="logo" width="36px" height="34px" style="padding: 6px; margin-top: 4px;" src={logoUrl} />
       {/if}
       {#if title}
         <span class="title_text">{title}</span>
@@ -58,7 +58,7 @@
   {/if}
 
   <div class="right_menus">
-    {#each rightMenus as menu}
+    {#each menus as menu}
       <button class="menu_button" id={menu.title + "_button"} onclick={(e) => menuClick(e, menu.title)}>
         <img class="menu_icon" class:round={menu.imageShape==="round"} alt={menu.title} src={menu.imageUrl} /></button>
 
@@ -119,12 +119,18 @@
   }
 
   .menu_icon {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     object-fit: cover;
   }
 
+  .menu_icon:hover {
+    cursor: pointer;
+  }
+
   .round {
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
   }
 </style>
