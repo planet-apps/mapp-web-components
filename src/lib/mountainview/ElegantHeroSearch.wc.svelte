@@ -3,7 +3,7 @@
 <script lang="ts">
   import ElegantSearch from "./ElegantSearch.wc.svelte";
 
-  let { height="80px", logoUrl = "", search = $bindable(), onSearch } = $props();
+  let { height="80px", title = "", logoUrl = "", search = $bindable(), onSearch } = $props();
 
 </script>
 
@@ -12,7 +12,7 @@
     {#if logoUrl}
       <img class="hero_image" height={`${height}`} alt="logo" src={logoUrl} />
     {/if}
-    <div class="hero_logo_text">CommonSky</div>
+    <div class="hero_logo_text">{title}</div>
   </div>
 
   <div class="hero_search">
@@ -35,6 +35,10 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 560;
+    color: #333;
+    font-size: 20px;
   }
 
   .hero_image {

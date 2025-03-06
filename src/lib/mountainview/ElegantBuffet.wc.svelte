@@ -23,16 +23,21 @@
     items=[]
   } = $props();
 
-  let view = $state("CARD");
-  let headers:string[] = $state(["dateTime", "authorName", "title"]);
+  if (typeof(items) == "string") {
+    items = JSON.parse(items);
+  }
 
-  
+  let view = $state("CARD");
+  let headers:{name: string, displayName: string, searchable: boolean}[] = $state([
+    { name: "dateTime", displayName: "Date", searchable: false},
+    { name: "authorName", displayName: "Author", searchable: true},
+    { name: "title", displayName: "Title", searchable: true}]);
 
 </script>
 
 <ElegantHeader {title} {logoUrl} {menus}></ElegantHeader>
 
-<ElegantHeroSearch {logoUrl} bind:search={search} {onSearch} />
+<ElegantHeroSearch {title} {logoUrl} bind:search={search} {onSearch} />
 
 <ElegantFilterCategories {categories} {onCategorySelect} />
 
@@ -41,7 +46,7 @@
 {#if view === "CARD"}
   <ElegantPageCard {items}/>
 {:else}
-  <ElegantTable {headers} headerssearchable={headers} rows={items} />
+  <ElegantTable {headers} rows={items} linkprefix="" linkcolumnname="link" update={undefined} />
 {/if}
 
 <style>

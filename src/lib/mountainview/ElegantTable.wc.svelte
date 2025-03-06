@@ -1,4 +1,4 @@
-<svelte:options customElement="mountainview-elegant-buffet" />
+<svelte:options customElement="mountainview-elegant-table" />
 
 <script module>
   export class RowClickEvent {}
@@ -7,14 +7,12 @@
 <script lang="ts">
   let {
     headers = [],
-    headerssearchable = [],
     rows = [],
     linkprefix = "",
     linkcolumnname = "",
     update = undefined,
   }: {
-    headers: string[];
-    headerssearchable: string[];
+    headers: {name: string, displayName: string, searchable: boolean}[];
     rows: any[];
     linkprefix: string;
     linkcolumnname: string;
@@ -24,9 +22,7 @@
   if (typeof(headers) == "string") {
     headers = JSON.parse(headers);
   }
-  if (typeof(headerssearchable) == "string") {
-    headerssearchable = JSON.parse(headerssearchable);
-  }
+
   if (typeof(rows) == "string") {
     rows = JSON.parse(rows);
   }
@@ -42,12 +38,9 @@
         let addRow: boolean = false;
 
         for (let header of headers) {
-          if (
-            headerssearchable.length === 0 ||
-            headerssearchable.includes(header)
-          ) {
+          if (header.searchable && row[header.name]) {
             if (
-              row[header]
+              row[header.name]
                 .toString()
                 .toLowerCase()
                 .includes(filterInput.toLowerCase())
@@ -114,7 +107,7 @@
     <thead>
       <tr>
         {#each headers as header}
-          <th>{header}</th>
+          <th>{header.displayName}</th>
         {/each}
       </tr>
     </thead>
@@ -125,13 +118,28 @@
             rowClick(i);
           }}
         >
-          {#each Object.entries(row) as col, i}
-            <td
-              ><a class="table_row" href={linkprefix + row[linkcolumnname]}
-                >{col[1]}</a
-              ></td
-            >
+
+          {#each headers as colName}
+            {#if row[colName.name]}
+              <td
+                ><a class="table_row" href={linkprefix + row[linkcolumnname]}
+                  >{row[colName.name]}</a
+                ></td
+              >
+            {:else}
+              <td></td>
+            {/if}
           {/each}
+<!-- 
+          {#each Object.entries(row) as col, i}
+            {#if headers.includes(col[0])}
+              <td
+                ><a class="table_row" href={linkprefix + row[linkcolumnname]}
+                  >{col[1]}</a
+                ></td
+              >
+            {/if}
+          {/each} -->
         </tr>
       {/each}
     </tbody>
@@ -140,13 +148,13 @@
 
 <style>
   .card_frame {
-    border-color: #eaedf2 !important;
-    box-shadow: 0 2px 18px rgba(0, 0, 0, 0.02) !important;
+    /* border-color: #eaedf2 !important; */
+    /* box-shadow: 0 2px 18px rgba(0, 0, 0, 0.02) !important; */
     min-width: 0;
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 0.0625rem solid rgba(46, 54, 80, 0.125);
+    /* border: 0.0625rem solid rgba(46, 54, 80, 0.125); */
     border-radius: 0.5rem;
     padding: 22px 32px;
     font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;

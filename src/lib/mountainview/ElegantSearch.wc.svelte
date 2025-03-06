@@ -80,6 +80,10 @@
     background-color: transparent;
   }
 
+  .search_input:focus, .search_input:focus{
+    outline: none;
+  }
+
   .results {
     position: absolute;
     margin: 0px 0px 0px 0px;

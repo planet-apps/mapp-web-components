@@ -4,6 +4,62 @@
     <script type="module" src="../dist/lib/mapp-web-components.min.js"></script>
   </head>
   <body>
-    <mountainview-elegant-buffet />
+    <mountainview-elegant-buffet title="Apigee Assets" logoUrl="favicon.png" />
   </body>
+
+  <script>
+
+    let items = [
+      {
+        dateTime: "2 days ago",
+        categories: [
+          {
+            title: "Kubernetes",
+            url: "kubernetes.png"
+          }
+        ],
+        imageUrl: "dino.jpg",
+        title: "A New Frontier of Security: Creating Safe and Secure AI Models",
+        authorImageUrl: "profile.jpg",
+        authorName: "Chaim Gartenberg",
+        authorUrl: "https://google.com",
+        description: "Solve a prehistoric Google mystery and learn the secret origins of our oldest-and largest-Googler: Stan the T.rex.and learn the secret origins of our oldest-and largest-Googler: Stan the T.rex.and learn the secret origins of our oldest-and largest-Googler: Stan the T.rex.",
+        link: "https://google.com",
+        types: [
+          {
+            title: "Kubernetes",
+            url: "kubernetes.png"
+          }
+        ]
+      },
+      {
+        dateTime: "2 days ago",
+        categories: [
+          {
+            title: "Kubernetes",
+            url: "kubernetes.png"
+          }
+        ],
+        imageUrl: "dino.jpg",
+        title: "A New Frontier of Security: Creating Safe and Secure AI Models",
+        authorImageUrl: "profile.jpg",
+        authorName: "Chaim Gartenberg",
+        authorUrl: "https://google.com",
+        description: "Solve a prehistoric Google mystery and learn the secret origins of our oldest-and largest-Googler: Stan the T.rex.and learn the secret origins of our oldest-and largest-Googler: Stan the T.rex.and learn the secret origins of our oldest-and largest-Googler: Stan the T.rex.",
+        link: "https://google.com",
+        types: [
+          {
+            title: "Kubernetes",
+            url: "kubernetes.png"
+          }
+        ]
+      }
+    ];
+
+    customElements.whenDefined('mountainview-elegant-buffet').then(() => {
+      let buffet = document.querySelector('mountainview-elegant-buffet');
+      buffet.setAttribute("items", JSON.stringify(items));      
+    });
+  </script>
+
 </html>

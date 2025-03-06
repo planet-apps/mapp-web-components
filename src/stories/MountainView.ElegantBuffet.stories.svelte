@@ -2,7 +2,6 @@
   import './mountainview.css';
   import { defineMeta } from '@storybook/addon-svelte-csf';
   import ElegantBuffet from '$lib/mountainview/ElegantBuffet.wc.svelte';
-  import { fn } from '@storybook/test';
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({

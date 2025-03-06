@@ -94,7 +94,15 @@
     height: 100%;
     display: flex;
     margin-left: 12px;
+    color: #111;
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
+
+  .title:link { text-decoration: none; }
+  .title:visited { text-decoration: none; color: #222;}
+  .title:hover { text-decoration: none; color: darkgray}
+  .title:active { text-decoration: none; }
+
 
   .title_text {
     display: flex;
