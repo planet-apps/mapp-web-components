@@ -9,6 +9,10 @@
     menus=[]
   } = $props();
 
+  if (typeof(menus) == "string") {
+    menus = JSON.parse(menus);
+  }
+
   let menuVisibleFlags: {[key: string]: boolean} = $state({});
 
   function menuClick(e: any, name: string) {
