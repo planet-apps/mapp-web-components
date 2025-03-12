@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Test</title>
+    <script type="module" src="../dist/lib/mapp-web-components.js"></script>
+  </head>
+  <body>
+
+    <mountainview-elegant-hero-search title="BikeShare" logoUrl="https://cdn-icons-png.freepik.com/256/5965/5965409.png?semt=ais_hybrid"></mountainview-elegant-hero-search>
+  </body>
+  <script>
+ 
+    document.addEventListener("SearchSubmit", e => {
+      console.log(e.detail.text);
+
+      document.dispatchEvent(new CustomEvent("SearchResults", { detail: {
+        results: ["a", "b", "c"]
+      }}));
+    });
+
+  </script>
+
+</html>

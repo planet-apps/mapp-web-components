@@ -12,15 +12,62 @@
     title="",
     logoUrl="",
     menus=[],
-    search="",
-    onSearch=undefined,
+    searchtext="",
+    searchloadresults,
+    searchsubmit,
     categories=[],
-    onCategorySelect=undefined,
+    categoryselect,
     types=[],
-    onTypeSelect=undefined,
+    typeselect,
     sorts=[],
-    onSortSelect=undefined,
-    items=[]
+    sortselect,
+    items
+  }:
+  {
+    title: string,
+    logoUrl: string,
+    menus: {
+      title: string,
+      imageUrl: string,
+      imageShape: string,
+      items: {
+        title: string,
+        url: string
+      }[]
+    }[],
+    searchtext?: string,
+    searchloadresults?: (text: string) => string[],
+    searchsubmit: (text: string) => void,
+    categories: {
+      name: string,
+      letter: string
+    }[],
+    categoryselect: (categoryState: {[key: string]: boolean}) => void,
+    types: {
+      name: string,
+      icon: string
+    }[],
+    typeselect: (typeState: {[key: string]: boolean}) => void,
+    sorts: string[],
+    sortselect: (sort: string) => void,
+    items: {
+      title: string,
+      dateTime: string,
+      imageUrl: string,
+      authorName: string,
+      authorUrl: string,
+      authorImageUrl: string,
+      description: string,
+      link: string,
+      categories: {
+        name: string,
+        imageUrl: string
+      }[],
+      types: {
+        name: string,
+        imageUrl: string
+      }[]
+    }[]
   } = $props();
 
   if (typeof(items) == "string") {
@@ -37,11 +84,11 @@
 
 <ElegantHeader {title} {logoUrl} {menus}></ElegantHeader>
 
-<ElegantHeroSearch {title} {logoUrl} bind:search={search} {onSearch} />
+<ElegantHeroSearch {title} {logoUrl} bind:searchtext {searchloadresults} {searchsubmit} />
 
-<ElegantFilterCategories {categories} {onCategorySelect} />
+<ElegantFilterCategories {categories} {categoryselect} />
 
-<ElegantFilterTypes {types} {sorts} {onTypeSelect} {onSortSelect} bind:view={view} />
+<ElegantFilterTypes {types} {sorts} {typeselect} {sortselect} bind:view />
 
 {#if view === "CARD"}
   <ElegantPageCard {items}/>

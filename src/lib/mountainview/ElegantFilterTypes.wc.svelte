@@ -3,7 +3,24 @@
 <script lang="ts">
   import ElegantSelect from "./ElegantSelect.wc.svelte";
 
-  let { types, sorts, onTypeSelect = undefined, onSortSelect = undefined, view = $bindable("card"), onViewSelect = undefined } = $props();
+  let {
+    types,
+    sorts,
+    typeselect,
+    sortselect,
+    view = $bindable("card"),
+    viewselect,
+  }: {
+    types: {
+      name: string,
+      icon: string
+    }[],
+    sorts: string[],
+    typeselect: (typeState: {[key: string]: boolean}) => void,
+    sortselect: (sort: string) => void,
+    view: string,
+    viewselect?: (view: string) => void
+  } = $props();
 
   let selected: { [key: string]: boolean } = $state({});
 
@@ -11,14 +28,14 @@
     if (!selected[name]) selected[name] = true;
     else selected[name] = false;
 
-    if (onTypeSelect) {
-      onTypeSelect(selected);
+    if (typeselect) {
+      typeselect(selected);
     }
   }
 
   function sortSelect(select: string) {
-    if (onSortSelect) {
-      onSortSelect(select);
+    if (sortselect) {
+      sortselect(select);
     }
   }
 
@@ -26,10 +43,10 @@
     if (view === "CARD") {
       view = "TABLE";
     } else {
-      view = "CARD"
+      view = "CARD";
     }
 
-    if (onViewSelect) onViewSelect(view);
+    if (viewselect) viewselect(view);
   }
 </script>
 
@@ -70,7 +87,68 @@
           </g></svg
         >
       {:else}
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#d8d8d8"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g id="grid"> <g> <rect fill="none" height="7" stroke="#d8d8d8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="7" x="14.5" y="2.5"></rect> <rect fill="none" height="7" stroke="#d8d8d8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="7" x="14.5" y="14.5"></rect> <rect fill="none" height="7" stroke="#d8d8d8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="7" x="2.5" y="2.5"></rect> <rect fill="none" height="7" stroke="#d8d8d8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="7" x="2.5" y="14.5"></rect> </g> </g> </g> </g></svg>
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="#d8d8d8"
+          ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g><g id="SVGRepo_iconCarrier">
+            <title></title>
+            <g id="Complete">
+              <g id="grid">
+                <g>
+                  <rect
+                    fill="none"
+                    height="7"
+                    stroke="#d8d8d8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    width="7"
+                    x="14.5"
+                    y="2.5"
+                  ></rect>
+                  <rect
+                    fill="none"
+                    height="7"
+                    stroke="#d8d8d8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    width="7"
+                    x="14.5"
+                    y="14.5"
+                  ></rect>
+                  <rect
+                    fill="none"
+                    height="7"
+                    stroke="#d8d8d8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    width="7"
+                    x="2.5"
+                    y="2.5"
+                  ></rect>
+                  <rect
+                    fill="none"
+                    height="7"
+                    stroke="#d8d8d8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    width="7"
+                    x="2.5"
+                    y="14.5"
+                  ></rect>
+                </g>
+              </g>
+            </g>
+          </g></svg
+        >
       {/if}
     </button>
     <ElegantSelect input="Latest" options={sorts} onInput={sortSelect} />

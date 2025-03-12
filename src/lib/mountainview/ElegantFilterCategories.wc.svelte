@@ -1,39 +1,43 @@
 <svelte:options customElement="mountainview-elegant-filtercats" />
 
 <script lang="ts">
-  let { categories, onCategorySelect } = $props();
+  let { categories, categoryselect }: {
+    categories: {
+        name: string,
+        letter: string
+      }[],
+      categoryselect: (categoryState: {[key: string]: boolean}) => void
+  } = $props();
 
-  let selected: {[key: string]: boolean} = $state({});
+  let selected: { [key: string]: boolean } = $state({});
 
   function categoryClick(name: string) {
-    if (!selected[name])
-      selected[name] = true;
-    else
-      selected[name] = false;
+    if (!selected[name]) selected[name] = true;
+    else selected[name] = false;
 
-    if (onCategorySelect) {
-      onCategorySelect(selected);
+    if (categoryselect) {
+      categoryselect(selected);
     }
   }
 </script>
 
 <div class="filterbar_frame">
-
   {#each categories as category}
-
     <div class="filterbar_option">
       <!-- svelte-ignore a11y_click_events_have_key_events -->
       <!-- svelte-ignore a11y_no_static_element_interactions -->
-      <div class="letter" class:letter_selected={selected[category.name]} onclick={() => categoryClick(category.name)}>
+      <div
+        class="letter"
+        class:letter_selected={selected[category.name]}
+        onclick={() => categoryClick(category.name)}
+      >
         {category.letter}
       </div>
       <div class="name">
         {category.name}
       </div>
     </div>
-
   {/each}
-
 </div>
 
 <style>
