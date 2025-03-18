@@ -1,4 +1,4 @@
-<svelte:options customElement="mountainview-elegant-card" />
+<svelte:options customElement="mv-elegant-card" />
 
 <script lang="ts">
   let {

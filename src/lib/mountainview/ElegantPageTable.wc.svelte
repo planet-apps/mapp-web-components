@@ -1,4 +1,4 @@
-<svelte:options customElement="mountainview-elegant-tablepage" />
+<svelte:options customElement="mv-elegant-tablepage" />
 
 <script lang="ts">
 import { fade, slide, fly, blur, scale } from 'svelte/transition';
@@ -7,6 +7,10 @@ import ElegantFilterTypes from "./ElegantFilterTypes.wc.svelte";
 import ElegantCard from "./ElegantCard.wc.svelte";
 
 let {items} = $props();
+
+if (typeof(items) == "string") {
+  items = JSON.parse(items);
+}
 
 </script>
 

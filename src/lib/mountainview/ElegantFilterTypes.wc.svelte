@@ -1,4 +1,4 @@
-<svelte:options customElement="mountainview-elegant-filtertypes" />
+<svelte:options customElement="mv-elegant-filtertypes" />
 
 <script lang="ts">
   import ElegantSelect from "./ElegantSelect.wc.svelte";

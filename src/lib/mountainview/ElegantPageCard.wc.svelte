@@ -1,4 +1,4 @@
-<svelte:options customElement="mountainview-elegant-cardpage" />
+<svelte:options customElement="mv-elegant-cardpage" />
 
 <script lang="ts">
 import { fade, slide, fly, blur, scale } from 'svelte/transition';
@@ -8,6 +8,9 @@ import ElegantCard from "./ElegantCard.wc.svelte";
 
 let {items} = $props();
 
+if (typeof(items) == "string") {
+  items = JSON.parse(items);
+}
 </script>
 
 <div class="menu_frame">

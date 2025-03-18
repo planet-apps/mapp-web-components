@@ -1,16 +1,24 @@
-<svelte:options customElement="mountainview-elegant-dropdown" />
+<svelte:options customElement="mv-elegant-dropdown" />
 
 <script lang="ts">
 
   let {
-    top="54px",
-    left="12px",
+    position={},
     menuItems=[]
+  }: {
+    position: {
+      top?: string,
+      left?: string
+    },
+    menuItems: {
+      title: string,
+      url: string
+    }[]
   } = $props();
   
 </script>
 
-<div class="menu_frame" style={`top: ${top}; left: ${left}`}>
+<div class="menu_frame" style={`top: ${position.top}; left: ${position.left};`}>
   <div class="arrow"></div>
   <div class="menu">
     {#each menuItems as item}
@@ -24,6 +32,8 @@
 <style>
 .menu_frame {
   position: fixed;
+  top: "57px";
+  left: calc(100vw-24);
   min-width: 200px;
   min-height: 200px;
   max-width: 180px;

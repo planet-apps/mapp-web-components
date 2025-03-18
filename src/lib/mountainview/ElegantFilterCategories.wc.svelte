@@ -1,4 +1,4 @@
-<svelte:options customElement="mountainview-elegant-filtercats" />
+<svelte:options customElement="mv-elegant-filtercats" />
 
 <script lang="ts">
   let { categories, categoryselect }: {

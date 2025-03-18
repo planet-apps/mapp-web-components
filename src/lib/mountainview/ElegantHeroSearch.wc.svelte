@@ -1,6 +1,6 @@
 <svelte:options
   customElement={{
-    tag: "mountainview-elegant-hero-search",
+    tag: "mv-elegant-hero-search",
     props: {
       text: { reflect: true },
     },
@@ -13,14 +13,14 @@
   let {
     height = "80px",
     title = "",
-    logoUrl = "",
+    titleImageUrl = "",
     searchtext = $bindable(),
     searchloadresults,
     searchsubmit,
   }: {
     height?: string,
     title: string,
-    logoUrl: string,
+    titleImageUrl: string,
     searchtext: string,
     searchloadresults?: (text: string) => string[],
     searchsubmit: (text: string) => void
@@ -29,8 +29,8 @@
 
 <div class="hero">
   <div class="hero_logo" style={`height: ${height};`}>
-    {#if logoUrl}
-      <img class="hero_image" height={`${height}`} alt="logo" src={logoUrl} />
+    {#if titleImageUrl}
+      <img class="hero_image" height={`${height}`} alt="logo" src={titleImageUrl} />
     {/if}
     <div class="hero_logo_text">{title}</div>
   </div>

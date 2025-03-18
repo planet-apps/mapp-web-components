@@ -1,4 +1,4 @@
-<svelte:options customElement="mountainview-elegant-select" />
+<svelte:options customElement="mv-elegant-select" />
 
 <script lang="ts">
 

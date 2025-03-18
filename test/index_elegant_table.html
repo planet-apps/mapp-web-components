@@ -4,7 +4,7 @@
     <script type="module" src="https://cdn.jsdelivr.net/gh/commonsky-org/mapp-web-components/dist/lib/mapp-web-components.js"></script>
   </head>
   <body>
-    <!--mountainview-elegant-table /-->
+    <mv-elegant-table />
   </body>
 
   <script>
@@ -29,8 +29,8 @@
       }
     ];
 
-    customElements.whenDefined('mountainview-elegant-table').then(() => {
-      let buffet = document.querySelector('mountainview-elegant-table');
+    customElements.whenDefined('mv-elegant-table').then(() => {
+      let buffet = document.querySelector('mv-elegant-table');
       buffet.setAttribute("headers", JSON.stringify(headers));  
       buffet.setAttribute("rows", JSON.stringify(items));      
     });

@@ -1,4 +1,4 @@
-<svelte:options customElement="mountainview-elegant-table" />
+<svelte:options customElement="mv-elegant-table" />
 
 <script module>
   export class RowClickEvent {}
@@ -6,38 +6,39 @@
 
 <script lang="ts">
   let {
-    headers = [],
-    rows = [],
+    tableHeaders = [],
+    tableRows = [],
     linkprefix = "",
     linkcolumnname = "",
-    update = undefined,
+    tableRowClick = undefined,
   }: {
-    headers: {name: string, displayName: string, searchable: boolean}[];
-    rows: any[];
+    tableHeaders: { name: string; displayName: string; searchable?: boolean, hideNarrow?: boolean }[];
+    tableRows: any[];
     linkprefix: string;
     linkcolumnname: string;
-    update: undefined | ((e: { detail: { rowIndex: number } }) => void);
+    tableRowClick: undefined | ((e: { detail: { rowIndex: number } }) => void);
   } = $props();
 
-  if (typeof(headers) == "string") {
-    headers = JSON.parse(headers);
+  if (typeof tableHeaders == "string") {
+    tableHeaders = JSON.parse(tableHeaders);
   }
 
-  if (typeof(rows) == "string") {
-    rows = JSON.parse(rows);
+  if (typeof tableRows == "string") {
+    tableRows = JSON.parse(tableRows);
   }
 
-  let rowsDisplay: any[] = $state(rows);
+  let rowsDisplay: any[] = $state(tableRows);
   let filterInput: string = $state("");
+  let rowSelectedIndex: number = $state(-1);
 
   function search() {
     if (filterInput) {
       let tempData: any[] = [];
 
-      for (let row of rows) {
+      for (let row of tableRows) {
         let addRow: boolean = false;
 
-        for (let header of headers) {
+        for (let header of tableHeaders) {
           if (header.searchable && row[header.name]) {
             if (
               row[header.name]
@@ -56,32 +57,35 @@
 
       rowsDisplay = tempData;
     } else {
-      rowsDisplay = rows;
+      rowsDisplay = tableRows;
     }
   }
 
   const rowClick = (index: number) => {
-    // dispatch native web event
-    $host().dispatchEvent(
-      new CustomEvent("update", {
-        detail: {
-          rowIndex: index,
-        },
-      }),
-    );
+    // set row selected
+    rowSelectedIndex = index;
 
     // if a callback was provider, also broadcast that
-    if (update) {
-      update({
+    if (tableRowClick) {
+      tableRowClick({
         detail: {
           rowIndex: index,
         },
       });
     }
+
+    // also dispatch customevent for web listeners
+    document.dispatchEvent(
+      new CustomEvent("TableRowClick", {
+        detail: {
+          rowIndex: index,
+        },
+      }),
+    );
   };
 </script>
 
-<div class="card_frame">
+<div class="frame" style="container-type: inline-size;">
   <div class="filter">
     <svg
       data-icon-name="filterIcon"
@@ -106,40 +110,32 @@
   <table>
     <thead>
       <tr>
-        {#each headers as header}
-          <th>{header.displayName}</th>
+        {#each tableHeaders as header}
+          <th class:column_sm={header.hideNarrow}>{header.displayName}</th>
         {/each}
       </tr>
     </thead>
     <tbody>
       {#each rowsDisplay as row, i}
-        <tr
-          onclick={() => {
+        <tr class:table_row_selected={i === rowSelectedIndex} onclick={() => {
             rowClick(i);
           }}
         >
-
-          {#each headers as colName}
+          {#each tableHeaders as colName}
             {#if row[colName.name]}
-              <td
-                ><a class="table_row" href={linkprefix + row[linkcolumnname]}
-                  >{row[colName.name]}</a
-                ></td
-              >
+              <td class:column_sm={colName.hideNarrow}
+                >
+                {#if linkcolumnname}
+                  <a class="table_row" href={linkprefix + row[linkcolumnname]}
+                  >{row[colName.name]}</a>
+                {:else}
+                  <span class="table_row">{row[colName.name]}</span>
+                {/if}
+              </td>
             {:else}
               <td></td>
             {/if}
           {/each}
-<!-- 
-          {#each Object.entries(row) as col, i}
-            {#if headers.includes(col[0])}
-              <td
-                ><a class="table_row" href={linkprefix + row[linkcolumnname]}
-                  >{col[1]}</a
-                ></td
-              >
-            {/if}
-          {/each} -->
         </tr>
       {/each}
     </tbody>
@@ -147,7 +143,7 @@
 </div>
 
 <style>
-  .card_frame {
+  .frame {
     /* border-color: #eaedf2 !important; */
     /* box-shadow: 0 2px 18px rgba(0, 0, 0, 0.02) !important; */
     min-width: 0;
@@ -185,15 +181,24 @@
     padding-top: 14px;
     padding-bottom: 14px;
     border-bottom: 1px solid #eaedf2 !important;
-  }
-
-  table tbody tr td {
+    display: block;
   }
 
   table tbody tr:hover {
     background-color: #eff0f2;
     cursor: pointer;
     border-radius: 0.5rem;
+  }
+
+  .table_row_selected {
+    background-color: #eff0f2;
+    border-radius: 0.5rem;
+  }
+
+  @container (width <= 768px) {
+    .column_sm {
+      display: none;
+    }
   }
 
   a:link {

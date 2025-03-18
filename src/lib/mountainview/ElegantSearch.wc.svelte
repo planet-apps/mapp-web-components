@@ -1,4 +1,4 @@
-<svelte:options customElement="mountainview-elegant-search" />
+<svelte:options customElement="mv-elegant-search" />
 
 <script lang="ts">
   let {
@@ -38,6 +38,8 @@
           },
         }),
       );
+
+      searchtext = "";
     }
   }
 </script>

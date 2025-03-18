@@ -4,10 +4,40 @@
     <script type="module" src="../dist/lib/mapp-web-components.min.js"></script>
   </head>
   <body>
-    <mountainview-elegant-buffet title="Apigee Assets" logoUrl="favicon.png" />
+    <mv-elegant-buffet title="Apigee Assets" logoUrl="favicon.png" />
   </body>
 
   <script>
+    let menus = [
+      {
+        title: "User menu",
+        imageUrl: "profile.jpg",
+        imageShape: "round",
+        items: [
+          {
+            title: "Log out",
+            url: "https://google.com"
+          },
+          {
+            title: "Account",
+            url: "https://google.com"
+          }
+        ]
+      },  {
+        title: "Site menu",
+        imageUrl: "profile.jpg",
+        imageShape: "round",
+        items: [
+          {
+            title: "Log out",
+            url: "https://google.com"
+          },
+          {
+            title: "Account",
+            url: "https://google.com"
+          }
+        ]
+      }];
 
     let items = [
       {
@@ -56,9 +86,10 @@
       }
     ];
 
-    customElements.whenDefined('mountainview-elegant-buffet').then(() => {
-      let buffet = document.querySelector('mountainview-elegant-buffet');
-      buffet.setAttribute("items", JSON.stringify(items));      
+    customElements.whenDefined('mv-elegant-buffet').then(() => {
+      let buffet = document.querySelector('mv-elegant-buffet');
+      buffet.setAttribute("items", JSON.stringify(items));
+      buffet.setAttribute("headerMenus", JSON.stringify(menus));   
     });
   </script>
 

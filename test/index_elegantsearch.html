@@ -4,17 +4,66 @@
     <script type="module" src="../dist/lib/mapp-web-components.js"></script>
   </head>
   <body>
+    <mv-elegant-header title="BikeShare" titleImageUrl="favicon.png"></mv-elegant-header>
+    <mv-elegant-hero-search title="BikeShare" titleImageUrl="favicon.png"></mv-elegant-hero-search>
 
-    <mountainview-elegant-hero-search title="BikeShare" logoUrl="https://cdn-icons-png.freepik.com/256/5965/5965409.png?semt=ais_hybrid"></mountainview-elegant-hero-search>
+    <mv-elegant-table></mv-elegant-table>
   </body>
   <script>
  
+    let tableHeaders = [
+      {
+        "name": "name",
+        "displayName": "Name",
+        "searchable": true
+      },
+      {
+        "name": "description",
+        "displayName": "Description",
+        "searchable": true
+      },
+      {
+        "name": "comments",
+        "displayName": "Comments",
+        "searchable": true,
+        "hideNarrow": true
+      }
+    ];
+
+    let tableRows = [
+      {
+        "name": "test",
+        "description": "test",
+        "comments": "testtest test test test test test test test test test test test test "
+      },
+      {
+        "name": "test",
+        "description": "test",
+        "comments": "testtest test test test test test test test test test test "
+      },      {
+        "name": "test",
+        "description": "test",
+        "comments": "test test test test test test test test test test test test test test "
+      }
+    ]
+
     document.addEventListener("SearchSubmit", e => {
       console.log(e.detail.text);
 
       document.dispatchEvent(new CustomEvent("SearchResults", { detail: {
         results: ["a", "b", "c"]
       }}));
+    });
+
+    document.addEventListener("TableRowClick", e => {
+      alert("Table row clicked: " + e.detail.rowIndex);
+    });
+
+
+    customElements.whenDefined('mv-elegant-table').then(() => {
+      let buffet = document.querySelector('mv-elegant-table');
+      buffet.setAttribute("tableHeaders", JSON.stringify(tableHeaders));
+      buffet.setAttribute("tableRows", JSON.stringify(tableRows));   
     });
 
   </script>

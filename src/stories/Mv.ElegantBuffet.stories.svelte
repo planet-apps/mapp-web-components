@@ -1,5 +1,5 @@
 <script module lang="ts">
-  import './mountainview.css';
+  import './style.css';
   import { defineMeta } from '@storybook/addon-svelte-csf';
   import ElegantBuffet from '$lib/mountainview/ElegantBuffet.wc.svelte';
 

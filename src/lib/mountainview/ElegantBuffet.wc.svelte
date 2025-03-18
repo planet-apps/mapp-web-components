@@ -1,4 +1,4 @@
-<svelte:options customElement="mountainview-elegant-buffet" />
+<svelte:options customElement="mv-elegant-buffet" />
 
 <script lang="ts">
   import ElegantHeader from "./ElegantHeader.wc.svelte";
@@ -10,8 +10,8 @@
 
   let {
     title="",
-    logoUrl="",
-    menus=[],
+    titleImageUrl="",
+    headerMenus=[],
     searchtext="",
     searchloadresults,
     searchsubmit,
@@ -25,8 +25,8 @@
   }:
   {
     title: string,
-    logoUrl: string,
-    menus: {
+    titleImageUrl: string,
+    headerMenus: {
       title: string,
       imageUrl: string,
       imageShape: string,
@@ -70,21 +70,17 @@
     }[]
   } = $props();
 
-  if (typeof(items) == "string") {
-    items = JSON.parse(items);
-  }
-
   let view = $state("CARD");
-  let headers:{name: string, displayName: string, searchable: boolean}[] = $state([
+  let tableHeaders:{name: string, displayName: string, searchable: boolean}[] = $state([
     { name: "dateTime", displayName: "Date", searchable: false},
     { name: "authorName", displayName: "Author", searchable: true},
     { name: "title", displayName: "Title", searchable: true}]);
 
 </script>
 
-<ElegantHeader {title} {logoUrl} {menus}></ElegantHeader>
+<ElegantHeader {title} {titleImageUrl} {headerMenus}></ElegantHeader>
 
-<ElegantHeroSearch {title} {logoUrl} bind:searchtext {searchloadresults} {searchsubmit} />
+<ElegantHeroSearch {title} {titleImageUrl} bind:searchtext {searchloadresults} {searchsubmit} />
 
 <ElegantFilterCategories {categories} {categoryselect} />
 
@@ -93,7 +89,7 @@
 {#if view === "CARD"}
   <ElegantPageCard {items}/>
 {:else}
-  <ElegantTable {headers} rows={items} linkprefix="" linkcolumnname="link" update={undefined} />
+  <ElegantTable {tableHeaders} tableRows={items} linkprefix="" linkcolumnname="link" update={undefined} />
 {/if}
 
 <style>

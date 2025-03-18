@@ -1,19 +1,32 @@
-<svelte:options customElement="mountainview-elegant-header" />
+<svelte:options customElement="mv-elegant-header" />
 
 <script lang="ts">
   import DropDown from "./ElegantDropDown.wc.svelte";
 
   let {
     title="",
-    logoUrl="",
-    menus=[]
+    titleImageUrl="",
+    headerMenus=[]
+  }: {
+    title: string,
+    titleImageUrl: string,
+    headerMenus: {
+      title: string,
+      imageUrl: string,
+      imageShape: string,
+      items: {
+        title: string,
+        url: string
+      }[]
+    }[]
   } = $props();
 
-  if (typeof(menus) == "string") {
-    menus = JSON.parse(menus);
+  if (typeof(headerMenus) == "string") {
+    headerMenus = JSON.parse(headerMenus);
   }
 
   let menuVisibleFlags: {[key: string]: boolean} = $state({});
+  let menuButtons: {[key: string]: HTMLElement} = $state({});
 
   function menuClick(e: any, name: string) {
     if (e) e.stopPropagation();
@@ -28,17 +41,25 @@
       menuVisibleFlags[name] = false;
   }
 
-  function getElementPosition(name: string): {top: string, left: string} {
-    let result: {top: string, left: string} = {top: "54px", left: "12px"};
-    let elem = document.getElementById(name);
+  function getMenuPosition(name: string): {top?: string, left?: string} {
+    let result: {top?: string, left?: string} = {};
+    let elem = undefined;
+    if (menuButtons[name]) elem = menuButtons[name];
 
     if (elem) {
       var rect = elem.getBoundingClientRect();
-      result.top = (rect.top + rect.height + 4).toString() + "px";
-      result.left = (rect.right - 200).toString() + "px";
+      result.top = (rect.top + rect.height + 12).toString() + "px";
+      result.left = (rect.left - 150).toString() + "px";
+      console.log(result);
+    } else {
+      console.log("Could not find element with id: " + name);
     }
 
     return result;
+  }
+
+  function formatName(text: string): string {
+    return text.toLowerCase().replaceAll(" ", "_");
   }
 
   document.onclick = function docClick() {
@@ -49,11 +70,11 @@
 </script>
 
 <div class="header">
-  {#if title || logoUrl}
+  {#if title || titleImageUrl}
     <a href="https://google.com" target="_blank" class="title">
 
-      {#if logoUrl}
-        <img class="title_logo" alt="logo" width="36px" height="34px" style="padding: 6px; margin-top: 4px;" src={logoUrl} />
+      {#if titleImageUrl}
+        <img class="title_logo" alt="logo" width="36px" height="34px" style="padding: 6px; margin-top: 4px;" src={titleImageUrl} />
       {/if}
       {#if title}
         <span class="title_text">{title}</span>
@@ -62,20 +83,18 @@
   {/if}
 
   <div class="right_menus">
-    {#each menus as menu}
-      <button class="menu_button" id={menu.title + "_button"} onclick={(e) => menuClick(e, menu.title)}>
-        <img class="menu_icon" class:round={menu.imageShape==="round"} alt={menu.title} src={menu.imageUrl} /></button>
+    {#each headerMenus as menu, i}
+      <button class="menu_button" id={formatName(menu.title + "_button")} onclick={(e) => menuClick(e, menu.title)}>
+        <img class="menu_icon" class:round={menu.imageShape==="round"} alt={menu.title} src={menu.imageUrl} bind:this={menuButtons[formatName(menu.title + "_button")]} /></button>
 
       {#if menuVisibleFlags[menu.title]}
-        <DropDown menuItems={menu.items} top={getElementPosition(menu.title + "_button").top} left={getElementPosition(menu.title + "_button").left}></DropDown>
+        <DropDown menuItems={menu.items} position={getMenuPosition(formatName(menu.title + "_button"))}></DropDown>
       {/if}
     {/each}
   </div>
 </div>
 
-
 <style>
-
   .header {
     display: flex;
     flex-flow: row wrap;
