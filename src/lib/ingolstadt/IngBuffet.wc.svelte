@@ -1,8 +1,8 @@
-<svelte:options customElement="mapp-menu" />
+<svelte:options customElement="ing-buffet" />
 
 <script lang="ts">
   import { fade, slide, fly, blur, scale } from 'svelte/transition';
-  import MappHeaderLite from "./MappHeaderLite.wc.svelte";
+  import MappHeaderLite from "./IngHeaderLite.wc.svelte";
   import { linear } from 'svelte/easing';
 
   let {

@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "build-wc": "vite build --config vite.wc.config.ts",
+    "build:wc": "vite build --config vite.wc.config.ts",
     "preview": "vite preview",
     "package": "svelte-kit sync && svelte-package && publint",
     "prepublishOnly": "npm run package",

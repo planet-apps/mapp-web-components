@@ -1,56 +1,10 @@
 <html>
   <head>
-    <title>Test</title>
-    <script type="module" src="../dist/lib/mapp-web-components.min.js"></script>
-    <style>
-      mapp-menu:not(:defined) {
-        display: none;
-        visibility: hidden;
-      }
-
-      @view-transition {
-        navigation: auto;
-      }
-
-      @keyframes move-out {
-        from {
-          opacity: 1;
-        }
-
-        to {
-          opacity: .99;
-        }
-      }
-
-      @keyframes move-in {
-        from {
-          opacity: 0;
-        }
-
-        to {
-          opacity: 1;
-        }
-      }
-
-      /* Apply the custom animation to the old and new page states */
-      ::view-transition-old(root) {
-        animation: 0.3s ease-in both move-out;
-      }
-
-      ::view-transition-new(root) {
-        animation: 0.3s ease-in both move-in;
-      }
-    </style>
+    <title>Web Components Tester</title>
   </head>
   <body>
-    <mapp-menu supportuser="true" username="Bonnie Green" userpic="profile.jpg" activeitem="Mapps Dashboard" menuconfig='{"items": [{"title": "Mapps Dashboard", "url": "index.html", "icon": "favicon.png"}, {"title": "Overview", "url": "overview.html", "icon": "pie.svg"}, {"title": "Sales Orders", "url": "#", "icon": "sales.svg", "subitems": [{"title": "Test", "url": "#"}]},{"title": "Analytics", "url": "#"},{"title": "Settings", "url": "#", "icon": "settings.svg"}]}'>
-      <h1>Mapps Dashboard</h1>
-      <div>Your micro-apps analytics dashboard.</div>
-      <br /><br />
-
-      <mapp-table></mapp-table>
-
-    </mapp-menu>
+    <div>
+      <a href="index_gen_editor.html">index_gen_editor</a>
+    </div>
   </body>
-
-  </html>
+</html>

@@ -1,8 +1,8 @@
 
-<svelte:options customElement="mapp-headerlite" />
+<svelte:options customElement="ing-headerlite" />
 
 <script>
-  import MappInput from "./MappInput.wc.svelte";
+  import IngInput from "./IngInput.wc.svelte";
 
   const { title = "Apint.org", searchicon = "", supportuser = false, username = "", userpic = ""} = $props();
   let searchInput = "";
@@ -10,7 +10,7 @@
 
 <div class="header">
   <div style="width: 364px;" >
-    <MappInput icon={searchicon} placeholder="Search" input={searchInput}></MappInput>
+    <IngInput icon={searchicon} placeholder="Search" input={searchInput}></IngInput>
     <span>{searchInput}</span>
   </div>
   <div>

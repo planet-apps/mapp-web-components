@@ -1,12 +1,12 @@
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf';
-  import MappCheckbox from '../lib/MappCheckbox.svelte';
+  import IngCheckbox from '../lib/ingolstadt/IngCheckbox.svelte';
   import { fn } from '@storybook/test';
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
-    title: 'Stories/MappCheckbox',
-    component: MappCheckbox,
+    title: 'Stories/Ingolstadt/IngCheckbox',
+    component: IngCheckbox,
     tags: ['autodocs'],
     argTypes: {},
     args: {
@@ -22,13 +22,13 @@
 <Story name="Checked">
   <div>Checked status: {checked1}</div>
   <br>
-  <MappCheckbox label="Checkbox" name="check1" bind:checked={checked1} />
+  <IngCheckbox label="Checkbox" name="check1" bind:checked={checked1} />
 </Story>
 
 <Story name="Unchecked">
   <div>Checked status: {checked2}</div>
 
-  <MappCheckbox label="Checkbox" name="check2" bind:checked={checked2} />
+  <IngCheckbox label="Checkbox" name="check2" bind:checked={checked2} />
 </Story>
 
 <style>

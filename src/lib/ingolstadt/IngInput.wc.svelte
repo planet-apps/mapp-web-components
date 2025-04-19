@@ -1,4 +1,4 @@
-<svelte:options customElement="apint-input" />
+<svelte:options customElement="ing-input" />
 
 <script lang="ts">
 

@@ -1,12 +1,12 @@
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf';
-  import MappHeader from '../lib/MappHeader.svelte';
+  import IngHeader from '../lib/ingolstadt/IngHeader.svelte';
   import { fn } from '@storybook/test';
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
-    title: 'Stories/MappHeader',
-    component: MappHeader,
+    title: 'Stories/Ingolstadt/IngHeader',
+    component: IngHeader,
     tags: ['autodocs'],
     argTypes: {
       title: { 

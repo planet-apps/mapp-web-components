@@ -131,7 +131,7 @@
 </script>
 
 <!-- More on writing stories with args: https://storybook.js.org/docs/writing-stories/args -->
-<Story name="Primary" args={{ title: "CommonSky", logoUrl: '/favicon.png', menus: menus, search: search, onSearch: onSearch, items: items, categories: categories, onCategorySelect: onCategorySelect, types: types, onTypeSelect: onTypeSelect, sorts: sorts, onSortSelect: onSortSelect}}>
+<Story name="Primary" args={{ title: "CommonSky", titleImageUrl: '/favicon.png', menus: menus, search: search, onSearch: onSearch, items: items, categories: categories, onCategorySelect: onCategorySelect, types: types, onTypeSelect: onTypeSelect, sorts: sorts, onSortSelect: onSortSelect}}>
 </Story>
 
 <style>

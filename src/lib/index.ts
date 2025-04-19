@@ -1,14 +1,16 @@
 // Reexport your entry components here
-import MappButton from "./MappButton.wc.svelte";
-import MappHeaderLite from "./MappHeaderLite.wc.svelte";
-import MappMenu from "./MappMenu.wc.svelte";
-import MappInput from "./MappInput.wc.svelte";
-import MappTable from "./MappTable.wc.svelte";
+import IngButton from "./ingolstadt/IngButton.wc.svelte";
+import IngHeaderLite from "./ingolstadt/IngHeaderLite.wc.svelte";
+import IngBuffet from "./ingolstadt/IngBuffet.wc.svelte";
+import IngInput from "./ingolstadt/IngInput.wc.svelte";
+import IngTable from "./ingolstadt/IngTable.wc.svelte";
 import ElegantHeader from "./mountainview/ElegantHeader.wc.svelte";
 import ElegantBuffet from "./mountainview/ElegantBuffet.wc.svelte";
 import ElegantSearch from "./mountainview/ElegantSearch.wc.svelte";
 import ElegantHeroSearch from "./mountainview/ElegantHeroSearch.wc.svelte";
 import ElegantTable from "./mountainview/ElegantTable.wc.svelte";
 import ElegantSpinner from "./mountainview/ElegantSpinner.wc.svelte";
+import GenEditor from "./geneva/GenEditor.wc.svelte";
+import GenEditorNew from "./geneva/GenEditorNew.wc.svelte";
 
-export { MappButton, MappHeaderLite, MappMenu, MappInput, MappTable, ElegantHeader, ElegantBuffet, ElegantHeroSearch, ElegantSearch, ElegantTable, ElegantSpinner };
+export { IngButton, IngHeaderLite, IngBuffet, IngInput, IngTable, ElegantHeader, ElegantBuffet, ElegantHeroSearch, ElegantSearch, ElegantTable, ElegantSpinner, GenEditor, GenEditorNew };

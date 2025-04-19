@@ -1,12 +1,12 @@
 <script module>
   import { defineMeta } from "@storybook/addon-svelte-csf";
-  import MappRadio from "../lib/MappRadio.svelte";
+  import IngRadio from "../lib/ingolstadt/IngRadio.svelte";
   import { fn } from "@storybook/test";
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
-    title: "Stories/MappRadio",
-    component: MappRadio,
+    title: "Stories/Ingolstadt/IngRadio",
+    component: IngRadio,
     tags: ["autodocs"],
     argTypes: {},
     args: {
@@ -21,7 +21,7 @@
 <Story name="Simple options">
   <div>Radio value: {radio1}</div>
 
-  <MappRadio
+  <IngRadio
     name="simpleRadio"
     options={[
       { label: "Option 1", value: "check1" },

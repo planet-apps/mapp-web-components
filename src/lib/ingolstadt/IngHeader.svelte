@@ -1,8 +1,8 @@
 
-<svelte:options customElement="apint-header" />
+<svelte:options customElement="ing-header" />
 
 <script>
-  import ApintButton from "./MappButton.wc.svelte";
+  import IngButton from "./IngButton.wc.svelte";
 
   const { title = "Apint.org", supportuser = false, user = undefined, icon = "" } = $props();
 </script>

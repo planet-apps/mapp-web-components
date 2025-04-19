@@ -1,15 +1,15 @@
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf';
-  import MappMenu from '../lib/MappMenu.wc.svelte';
-  import MappTable from '../lib/MappTable.wc.svelte';
-  import MappInput from '../lib/MappInput.wc.svelte';
-  import MappSelect from '../lib/MappSelect.svelte';
+  import IngBuffet from '../lib/ingolstadt/IngBuffet.wc.svelte';
+  import IngTable from '../lib/ingolstadt/IngTable.wc.svelte';
+  import IngInput from '../lib/ingolstadt/IngInput.wc.svelte';
+  import IngSelect from '../lib/ingolstadt/IngSelect.svelte';
   import { fn } from '@storybook/test';
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
-    title: 'Stories/MappMenu',
-    component: MappMenu,
+    title: 'Stories/Ingolstadt/IngBuffet',
+    component: IngBuffet,
     tags: ['autodocs'],
     argTypes: {}
   });
@@ -38,7 +38,7 @@
   ]}}}></Story>
 
 <Story name="Data page">
-  <MappMenu supportuser={true} username="Bonnie Green" userpic="/profile.jpg" activeitem="Overview" menuconfig={{items: [
+  <IngBuffet supportuser={true} username="Bonnie Green" userpic="/profile.jpg" activeitem="Overview" menuconfig={{items: [
     {title: "Worldsay.org", url: "#", icon: "/favicon.png"},
     {title: "Overview", url: "#", icon: "/pie.svg"},
     {title: "Sales Orders", url: "#", icon: "/sales.svg", subitems: [
@@ -50,17 +50,17 @@
     <h1>Sales Orders</h1>
     <div>Your sales orders analytics dashboard.</div>
     <br /><br />
-    <MappTable headersSearchable={[]} linkColumnName="Id" linkPrefix="" update={(e) => {alert("Row clicked: " + e.detail.rowIndex)}} headers={["Id", "Created by", "Total", "Status"]} rows={[
+    <IngTable headersSearchable={[]} linkColumnName="Id" linkPrefix="" update={(e) => {alert("Row clicked: " + e.detail.rowIndex)}} headers={["Id", "Created by", "Total", "Status"]} rows={[
       { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}, 
       { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}, 
       { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}, 
       { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}, 
-      { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}]}></MappTable>
-  </MappMenu>
+      { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}]}></IngTable>
+  </IngBuffet>
 </Story>
 
 <Story name="Detail page">
-  <MappMenu supportuser={true} username="Bonnie Green" userpic="profile.jpg" activeitem="Settings" menuconfig={{items: [
+  <IngBuffet supportuser={true} username="Bonnie Green" userpic="profile.jpg" activeitem="Settings" menuconfig={{items: [
     {title: "Worldsay.org", url: "#", icon: "/favicon.png"},
     {title: "Overview", url: "#", icon: "/pie.svg"},
     {title: "Sales Orders", url: "#", icon: "/sales.svg"},
@@ -74,19 +74,19 @@
       <div style="width: 100%;">
         <h3>General information</h3>
       </div>
-      <MappInput style="width: 45%" label="First Name" placeholder="Enter your first name" bind:input={userData.firstName}></MappInput>
-      <MappInput style="width: 45%" label="Last Name" placeholder="Also your last name"></MappInput>
-      <MappInput style="width: 45%" type="date" label="Birthday" placeholder="mm/dd/yy"></MappInput>
-      <MappSelect style="width: 45%" label="Gender" options={["Male", "Female", "Other"]}></MappSelect>
-      <MappInput style="width: 45%" type="email" label="Email" placeholder="name@company.com"></MappInput>
-      <MappInput style="width: 45%" type="telephone" label="Phone" placeholder="+49 154343 3232"></MappInput>
+      <IngInput style="width: 45%" label="First Name" placeholder="Enter your first name" bind:input={userData.firstName}></IngInput>
+      <IngInput style="width: 45%" label="Last Name" placeholder="Also your last name"></IngInput>
+      <IngInput style="width: 45%" type="date" label="Birthday" placeholder="mm/dd/yy"></IngInput>
+      <IngSelect style="width: 45%" label="Gender" options={["Male", "Female", "Other"]}></IngSelect>
+      <IngInput style="width: 45%" type="email" label="Email" placeholder="name@company.com"></IngInput>
+      <IngInput style="width: 45%" type="telephone" label="Phone" placeholder="+49 154343 3232"></IngInput>
       <div style="width: 100%;">
         <h3>Addresses</h3>
       </div>
-      <MappInput style="width: 70%" label="Address" placeholder="Enter your home address"></MappInput>
-      <MappInput style="width: 20%" label="Number" placeholder="No."></MappInput>
+      <IngInput style="width: 70%" label="Address" placeholder="Enter your home address"></IngInput>
+      <IngInput style="width: 20%" label="Number" placeholder="No."></IngInput>
     </div>
-  </MappMenu>
+  </IngBuffet>
 </Story>
 
 <style>

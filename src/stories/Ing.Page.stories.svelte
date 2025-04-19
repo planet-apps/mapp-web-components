@@ -1,12 +1,11 @@
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf';
-  import MappPage from '../lib/MappPage.svelte';
-  import MappCard from '../lib/MappCard.svelte';
+  import IngPage from '../lib/ingolstadt/IngPage.svelte';
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
-    title: 'Stories/MappPage',
-    component: MappPage,
+    title: 'Stories/Ingolstadt/IngPage',
+    component: IngPage,
     tags: ['autodocs'],
     argTypes: {}
   });

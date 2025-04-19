@@ -1,5 +1,5 @@
 
-<svelte:options customElement="apint-card" />
+<svelte:options customElement="ing-card" />
 
 <script>
   const { title = "", image = "", bylineleft = "", bylineright = "", bylinerightimage = "", description = "", href = "", toplefttext = "", height="", 

@@ -1,5 +1,5 @@
 
-<svelte:options customElement="mapp-checkbox" />
+<svelte:options customElement="ing-checkbox" />
 
 <script lang="ts">
   let { label = 'Checkbox', name = "check1", checked = $bindable(false) } = $props();

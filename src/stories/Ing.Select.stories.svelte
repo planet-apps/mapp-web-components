@@ -1,12 +1,12 @@
 <script module>
   import { defineMeta } from "@storybook/addon-svelte-csf";
-  import MappSelect from "../lib/MappSelect.svelte";
+  import IngSelect from "../lib/ingolstadt/IngSelect.svelte";
   import { fn } from "@storybook/test";
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
-    title: "Stories/MappSelect",
-    component: MappSelect,
+    title: "Stories/ingolstadt/IngSelect",
+    component: IngSelect,
     tags: ["autodocs"],
     argTypes: {},
     args: {
@@ -21,7 +21,7 @@
 <Story name="Simple options">
   <div>Radio value: {input}</div>
 
-  <MappSelect
+  <IngSelect
     label="Test"
     options={[
       "Option 1",

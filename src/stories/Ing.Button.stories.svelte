@@ -1,12 +1,12 @@
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf';
-  import MappButton from '../lib/MappButton.wc.svelte';
   import { fn } from '@storybook/test';
+  import IngButton from '../lib/ingolstadt/IngButton.wc.svelte';
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
-    title: 'Stories/MappButton',
-    component: MappButton,
+    title: 'Stories/Ingolstadt/IngButton',
+    component: IngButton,
     tags: ['autodocs'],
     argTypes: {
       label: { control: 'text' },

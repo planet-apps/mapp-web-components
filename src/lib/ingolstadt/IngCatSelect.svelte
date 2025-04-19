@@ -1,69 +1,63 @@
-<svelte:options customElement="mapp-table" />
-
+<svelte:options customElement="ing-catselect" />
+<!-- 
 <script module>
   export class RowClickEvent {}
-</script>
+</script> -->
 
 <script lang="ts">
-  let {
+  const {
     headers = [],
-    headerssearchable = [],
-    rows = [],
-    linkprefix = "",
-    linkcolumnname = "",
+    headersSearchable = [],
+    categories = {},
+    linkPrefix = "",
+    linkColumnName = "",
     update = undefined,
   }: {
     headers: string[];
-    headerssearchable: string[];
-    rows: any[];
-    linkprefix: string;
-    linkcolumnname: string;
+    headersSearchable: string[];
+    categories: {[key: string]: any[]};
+    linkPrefix: string;
+    linkColumnName: string;
     update: undefined | ((e: { detail: { rowIndex: number } }) => void);
   } = $props();
 
-  if (typeof(headers) == "string") {
-    headers = JSON.parse(headers);
-  }
-  if (typeof(headerssearchable) == "string") {
-    headerssearchable = JSON.parse(headerssearchable);
-  }
-  if (typeof(rows) == "string") {
-    rows = JSON.parse(rows);
-  }
-
-  let rowsDisplay: any[] = $state(rows);
+  let categoriesDisplay: {[key: string]: any[]} = $state(categories);
   let filterInput: string = $state("");
 
   function search() {
     if (filterInput) {
-      let tempData: any[] = [];
+      let tempData: {[key: string]: any[]} = {};
 
-      for (let row of rows) {
-        let addRow: boolean = false;
+      for (let cat of Object.keys(categories)) {
+        tempData[cat] = [];
 
-        for (let header of headers) {
-          if (
-            headerssearchable.length === 0 ||
-            headerssearchable.includes(header)
-          ) {
+        for (let row of categories[cat]) {
+          let addRow: boolean = false;
+
+          for (let header of headers) {
             if (
-              row[header]
-                .toString()
-                .toLowerCase()
-                .includes(filterInput.toLowerCase())
+              headersSearchable.length === 0 ||
+              headersSearchable.includes(header)
             ) {
-              addRow = true;
-              break;
+              if (
+                row[header]
+                  .toString()
+                  .toLowerCase()
+                  .includes(filterInput.toLowerCase())
+              ) {
+                addRow = true;
+                break;
+              }
             }
           }
-        }
 
-        if (addRow) tempData.push(row);
+          if (addRow) tempData[cat].push(row);
+        }
       }
 
-      rowsDisplay = tempData;
+      categoriesDisplay = tempData;
     } else {
-      rowsDisplay = rows;
+      categoriesDisplay = categories;
     }
   }
 
@@ -119,20 +113,33 @@
       </tr>
     </thead>
     <tbody>
-      {#each rowsDisplay as row, i}
-        <tr
-          onclick={() => {
-            rowClick(i);
-          }}
-        >
-          {#each Object.entries(row) as col, i}
-            <td
-              ><a class="table_row" href={linkprefix + row[linkcolumnname]}
-                >{col[1]}</a
-              ></td
-            >
+      {#each Object.keys(categoriesDisplay) as cat, i}
+
+        <tr style="background-color: #eee;">
+          {#each headers as header, i}
+            {#if i == 0}
+              <td style="padding: 6px; padding-left: 12px;">{cat}</td>
+            {:else}
+              <th></th>
+            {/if}
           {/each}
         </tr>
+
+        {#each categoriesDisplay[cat] as row}
+          <tr
+            onclick={() => {
+              rowClick(i);
+            }}
+          >
+            {#each Object.entries(row) as col, i}
+              <td
+                ><a class="table_row" href={linkPrefix + row[linkColumnName]}
+                  >{col[1]}</a
+                ></td
+              >
+            {/each}
+          </tr>
+        {/each}
       {/each}
     </tbody>
   </table>
@@ -174,12 +181,9 @@
 
   .table_row {
     padding-left: 14px;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     border-bottom: 1px solid #eaedf2 !important;
-  }
-
-  table tbody tr td {
   }
 
   table tbody tr:hover {

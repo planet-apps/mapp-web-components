@@ -1,10 +1,10 @@
 
-<svelte:options customElement="apint-page" />
+<svelte:options customElement="ing-page" />
 
 <script>
-  import ApintHeader from "./MappHeader.svelte";
+  import ApintHeader from "./IngHeader.svelte";
 
-  const { title="Apint.org", icon="" } = $props();
+  const { title="Superplug.org", icon="" } = $props();
 </script>
 
 <article>

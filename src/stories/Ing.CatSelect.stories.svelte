@@ -1,18 +1,18 @@
 <script module>
   import { defineMeta } from "@storybook/addon-svelte-csf";
-  import MappCatSelect from "../lib/MappCatSelect.svelte";
+  import IngCatSelect from "../lib/ingolstadt/IngCatSelect.svelte";
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
-    title: "Stories/MappCatSelect",
-    component: MappCatSelect,
+    title: "Stories/Ingolstadt/IngCatSelect",
+    component: IngCatSelect,
     tags: ["autodocs"],
     argTypes: {},
   });
 </script>
 
 <Story
-  name="MappCatSelect Simple"
+  name="IngCatSelect Simple"
   args={{
     linkPrefix: "https://google.com/",
     linkColumnName: "Id",

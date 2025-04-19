@@ -1,5 +1,5 @@
 
-<svelte:options customElement="apint-radio" />
+<svelte:options customElement="ing-radio" />
 
 <script lang="ts">
   let { name = "radio1", options = [], value = $bindable("")}: {name: string, options: {label: string, value: string}[], value: string} = $props();

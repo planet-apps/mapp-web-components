@@ -1,4 +1,4 @@
-<svelte:options customElement="mapp-select" />
+<svelte:options customElement="ing-select" />
 
 <script>
   let {

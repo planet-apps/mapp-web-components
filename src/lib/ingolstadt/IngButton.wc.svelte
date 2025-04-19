@@ -1,5 +1,5 @@
 
-<svelte:options customElement="mapp-button" />
+<svelte:options customElement="ing-button" />
 
 <script>
   const { type = "primary", size = 'medium', label = 'Button', onClick = undefined } = $props();
