@@ -70,6 +70,9 @@
 	Title,
 	TodoList,
 	Underline} from "../assets/editor_new.js";
+
+  import editorCss from "../assets/editor_new.css?raw";
+
   import { onMount } from "svelte";
 
   let {editorContent = $bindable("")}: {editorContent: string} = $props();
@@ -78,9 +81,9 @@
   let imageUploadPath = "";
 
   onMount(() => {
-    // const newScript = document.createElement("script");
-    // newScript.textContent = editor;
-    // document.head.appendChild(newScript);
+    const newCss = document.createElement("style");
+    newCss.textContent = editorCss;
+    document.head.appendChild(newCss);
 
     initCkeditor();
   });
