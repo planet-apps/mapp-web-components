@@ -1,5 +1,5 @@
 <svelte:options customElement={{
-  tag: "gen-editor-new",
+  tag: "gen-editor",
   shadow: "none",
   props: {
     editorContent: {

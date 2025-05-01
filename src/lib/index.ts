@@ -10,7 +10,7 @@ import ElegantSearch from "./mountainview/ElegantSearch.wc.svelte";
 import ElegantHeroSearch from "./mountainview/ElegantHeroSearch.wc.svelte";
 import ElegantTable from "./mountainview/ElegantTable.wc.svelte";
 import ElegantSpinner from "./mountainview/ElegantSpinner.wc.svelte";
-import GenEditor from "./geneva/GenEditor.wc.svelte";
-import GenEditorNew from "./geneva/GenEditorNew.wc.svelte";
+import GenEditor from "./geneva/GenEditorNew.wc.svelte";
+// import GenEditor from "./geneva/GenEditor.wc.svelte";
 
-export { IngButton, IngHeaderLite, IngBuffet, IngInput, IngTable, ElegantHeader, ElegantBuffet, ElegantHeroSearch, ElegantSearch, ElegantTable, ElegantSpinner, GenEditor, GenEditorNew };
+export { IngButton, IngHeaderLite, IngBuffet, IngInput, IngTable, ElegantHeader, ElegantBuffet, ElegantHeroSearch, ElegantSearch, ElegantTable, ElegantSpinner, GenEditor };

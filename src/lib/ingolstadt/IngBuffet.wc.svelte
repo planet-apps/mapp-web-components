@@ -2,13 +2,14 @@
 
 <script lang="ts">
   import { fade, slide, fly, blur, scale } from 'svelte/transition';
-  import MappHeaderLite from "./IngHeaderLite.wc.svelte";
+  import IngHeaderLite from "./IngHeaderLite.wc.svelte";
   import { linear } from 'svelte/easing';
 
   let {
     title = "Mapp",
     icon = "",
     searchicon = "",
+    notificationicon = "",
     supportuser = true,
     username = "",
     userpic = "",
@@ -21,6 +22,8 @@
   }
 
   let expandstate: {[key: string]: boolean} = $state({});
+
+  if (activeitem) expandstate[activeitem] = true;
 
   let itemClick = (itemName: string) => {
     if (!expandstate[itemName])
@@ -80,7 +83,7 @@
     </div>
   </div>
   <div class="right_panel">
-    <MappHeaderLite {searchicon} supportuser={supportuser} username={username} userpic={userpic}></MappHeaderLite>
+    <IngHeaderLite {searchicon} {notificationicon} supportuser={supportuser} username={username} userpic={userpic}></IngHeaderLite>
     <div class="right_panel_content">
       <slot />
     </div>

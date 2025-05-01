@@ -4,7 +4,7 @@
 <script>
   import IngInput from "./IngInput.wc.svelte";
 
-  const { title = "Apint.org", searchicon = "", supportuser = false, username = "", userpic = ""} = $props();
+  const { title = "Apint.org", searchicon = "", notificationicon = "", supportuser = false, username = "", userpic = ""} = $props();
   let searchInput = "";
 </script>
 
@@ -16,8 +16,10 @@
   <div>
     {#if supportuser}
       <span class="user_button">
-        <img class="msg_icon" alt="alerts" src="bell.svg" />
-        <span class="msg_new"></span>
+        {#if notificationicon}
+          <img class="msg_icon" alt="alerts" src={notificationicon} />
+          <span class="msg_new"></span>
+        {/if}
         <img class="user_icon" alt="profile" src={userpic} />
         <span class="user_name">{username}</span>
       </span>

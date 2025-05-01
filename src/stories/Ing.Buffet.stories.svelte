@@ -25,7 +25,7 @@
 </script>
 
 <!-- More on writing stories with args: https://storybook.js.org/docs/writing-stories/args -->
-<Story name="Empty page" args={{ supportuser: true, username: "Bonnie Green", userpic: "/profile.jpg",
+<Story name="Empty page" args={{ supportuser: true, username: "Bonnie Green", notificationicon: "/bell.svg", userpic: "/profile.jpg",
   activeitem: "Sales Orders",
   menuconfig: {items: [
     {title: "Worldsay.org", url: "#", icon: "/favicon.png"},
