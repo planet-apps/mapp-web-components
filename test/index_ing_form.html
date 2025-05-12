@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>Test</title>
+    <script type="module" src="../dist/lib/mapp-web-components.min.js"></script>
+    <style>
+      mapp-menu:not(:defined) {
+        display: none;
+        visibility: hidden;
+      }
+
+      @view-transition {
+        navigation: auto;
+      }
+
+      @keyframes move-out {
+        from {
+          opacity: 1;
+        }
+
+        to {
+          opacity: .99;
+        }
+      }
+
+      @keyframes move-in {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Apply the custom animation to the old and new page states */
+      ::view-transition-old(root) {
+        animation: 0.3s ease-in both move-out;
+      }
+
+      ::view-transition-new(root) {
+        animation: 0.3s ease-in both move-in;
+      }
+
+      .card_frame {
+        max-width: 700px;
+        border-color: #eaedf2 !important;
+        box-shadow: 0 2px 18px rgba(0, 0, 0, .02) !important;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: .0625rem solid rgba(46, 54, 80, .125);
+        border-radius: .5rem;
+        padding: 12px 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <ing-buffet id="my-buffet" supportuser="true" username="Bonnie Green" userpic="profile.jpg" activeitem="Mapps Dashboard" menuconfig='{"items": [{"title": "Mapps Dashboard", "url": "index_ing_dash.html", "icon": "favicon.png"}, {"title": "Overview", "url": "index_ing_overview.html", "icon": "pie.svg"}, {"title": "Sales Orders", "url": "#", "icon": "sales.svg", "subitems": [{"title": "Test", "url": "#"}]},{"title": "Analytics", "url": "#"},{"title": "Settings", "url": "#", "icon": "settings.svg"}]}'>
+      <h1>Mapps Dashboard</h1>
+      <div>Your micro-apps analytics dashboard.</div>
+      <br /><br />
+
+      <ing-form></ing-form>
+
+    </ing-buffet>
+
+    <script>
+
+      let formSchema = {
+        "title": "Space",
+        "titlePlural": "Spaces",
+        "description": "A Superplug Space.",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Id",
+            "placeholder": "If no value is given, an id will be generated.",
+            "type": "string",
+            "length": "45%",
+            "value": ""
+          },
+          "name": {
+            "description": "Name",
+            "placeholder": "The name of the space.",
+            "type": "string",
+            "length": "45%",
+            "value": ""
+          },
+          "description": {
+            "description": "Description",
+            "placeholder": "A description of the space.",
+            "type": "string",
+            "length": "92%",
+            "value": ""
+          }
+        }
+      };
+
+      customElements.whenDefined('ing-buffet').then(() => {
+        let myForm = document.querySelector('ing-form');
+        myForm.setAttribute("schema", JSON.stringify(formSchema));      
+      });
+
+      function submitclick() {
+        let inputText = document.getElementById("first-name-input").innerHTML;
+        console.log("first-name-input on submit: " + inputText);
+
+        let genderSelectValue = document.getElementById("gender-select").innerHTML;
+        console.log("gender-select on submit: " + genderSelectValue);
+      }
+
+      document.addEventListener("InputChangedEvent", e => {
+        console.log(e.detail);
+      });
+    </script>
+  </body>
+
+  </html>

@@ -1,6 +1,6 @@
 <script module>
   import { defineMeta } from "@storybook/addon-svelte-csf";
-  import IngSelect from "../lib/ingolstadt/IngSelect.svelte";
+  import IngSelect from "../lib/ingolstadt/IngSelect.wc.svelte";
   import { fn } from "@storybook/test";
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories

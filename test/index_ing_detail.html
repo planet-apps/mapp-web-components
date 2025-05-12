@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <title>Test</title>
+    <script type="module" src="../dist/lib/mapp-web-components.min.js"></script>
+    <style>
+      mapp-menu:not(:defined) {
+        display: none;
+        visibility: hidden;
+      }
+
+      @view-transition {
+        navigation: auto;
+      }
+
+      @keyframes move-out {
+        from {
+          opacity: 1;
+        }
+
+        to {
+          opacity: .99;
+        }
+      }
+
+      @keyframes move-in {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Apply the custom animation to the old and new page states */
+      ::view-transition-old(root) {
+        animation: 0.3s ease-in both move-out;
+      }
+
+      ::view-transition-new(root) {
+        animation: 0.3s ease-in both move-in;
+      }
+
+      .card_frame {
+        max-width: 700px;
+        border-color: #eaedf2 !important;
+        box-shadow: 0 2px 18px rgba(0, 0, 0, .02) !important;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: .0625rem solid rgba(46, 54, 80, .125);
+        border-radius: .5rem;
+        padding: 12px 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <ing-buffet supportuser="true" username="Bonnie Green" userpic="profile.jpg" activeitem="Mapps Dashboard" menuconfig='{"items": [{"title": "Mapps Dashboard", "url": "index_ing_dash.html", "icon": "favicon.png"}, {"title": "Overview", "url": "index_ing_overview.html", "icon": "pie.svg"}, {"title": "Sales Orders", "url": "#", "icon": "sales.svg", "subitems": [{"title": "Test", "url": "#"}]},{"title": "Analytics", "url": "#"},{"title": "Settings", "url": "#", "icon": "settings.svg"}]}'>
+      <h1>Mapps Dashboard</h1>
+      <div>Your micro-apps analytics dashboard.</div>
+      <br /><br />
+
+      <div style="display: flex; flex-flow: row wrap;" class="card_frame">
+
+        <div>New space</div>
+  
+        <div style="width: 100%;">
+          <h3>General information</h3>
+        </div>
+        <ing-input id="first-name-input" style="width: 45%" label="First Name" placeholder="Enter your first name" input="test"></ing-input>
+        <ing-input style="width: 45%" label="Last Name" placeholder="Also your last name"></ing-input>
+        <ing-input style="width: 45%" type="date" label="Birthday" placeholder="mm/dd/yy"></ing-input>
+        <ing-select id="gender-select" style="width: 45%" label="Gender" items="Male,Female,Other"></ing-select>
+        <ing-input style="width: 45%" type="email" label="Email" placeholder="name@company.com"></ing-input>
+        <ing-input style="width: 45%" type="telephone" label="Phone" placeholder="+49 154343 3232"></ing-input>
+        <div style="width: 100%;">
+          <h3>Addresses</h3>
+        </div>
+        <ing-input style="width: 70%" label="Address" placeholder="Enter your home address"></ing-input>
+        <ing-input style="width: 20%" label="Number" placeholder="No."></ing-input>
+        <div style="width: 100%; text-align: right;">
+          <ing-button-gray id="submit-button" size="small" style="float: right;" type="secondary" onclick="submitclick()">Submit</ing-button-gray>
+        </div>
+      </div>
+
+    </ing-buffet>
+
+    <script>
+      function submitclick() {
+        let inputText = document.getElementById("first-name-input").innerHTML;
+        console.log("first-name-input on submit: " + inputText);
+
+        let genderSelectValue = document.getElementById("gender-select").innerHTML;
+        console.log("gender-select on submit: " + genderSelectValue);
+      }
+
+      document.addEventListener("InputChangedEvent", e => {
+        console.log(e.detail);
+      });
+    </script>
+  </body>
+
+  </html>

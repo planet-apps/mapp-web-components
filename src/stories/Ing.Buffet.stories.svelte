@@ -3,7 +3,7 @@
   import IngBuffet from '../lib/ingolstadt/IngBuffet.wc.svelte';
   import IngTable from '../lib/ingolstadt/IngTable.wc.svelte';
   import IngInput from '../lib/ingolstadt/IngInput.wc.svelte';
-  import IngSelect from '../lib/ingolstadt/IngSelect.svelte';
+  import IngSelect from '../lib/ingolstadt/IngSelect.wc.svelte';
   import { fn } from '@storybook/test';
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
@@ -13,10 +13,6 @@
     tags: ['autodocs'],
     argTypes: {}
   });
-
-  const rowClick = (index) => {
-    alert(index);
-  }
 
   let userData = $state({
     firstName: "Ted",
@@ -50,7 +46,7 @@
     <h1>Sales Orders</h1>
     <div>Your sales orders analytics dashboard.</div>
     <br /><br />
-    <IngTable headersSearchable={[]} linkColumnName="Id" linkPrefix="" update={(e) => {alert("Row clicked: " + e.detail.rowIndex)}} headers={["Id", "Created by", "Total", "Status"]} rows={[
+    <IngTable headerssearchable={[]} linkcolumnname="Id" linkprefix="" update={(e) => {alert("Row clicked: " + e.detail.rowIndex)}} headers={["Id", "Created by", "Total", "Status"]} rows={[
       { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}, 
       { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}, 
       { "Id": "1234", "Created by": "TYLER", "Total": "123.00", "Status": "FULFILLMENT"}, 
@@ -74,17 +70,17 @@
       <div style="width: 100%;">
         <h3>General information</h3>
       </div>
-      <IngInput style="width: 45%" label="First Name" placeholder="Enter your first name" bind:input={userData.firstName}></IngInput>
-      <IngInput style="width: 45%" label="Last Name" placeholder="Also your last name"></IngInput>
-      <IngInput style="width: 45%" type="date" label="Birthday" placeholder="mm/dd/yy"></IngInput>
-      <IngSelect style="width: 45%" label="Gender" options={["Male", "Female", "Other"]}></IngSelect>
-      <IngInput style="width: 45%" type="email" label="Email" placeholder="name@company.com"></IngInput>
-      <IngInput style="width: 45%" type="telephone" label="Phone" placeholder="+49 154343 3232"></IngInput>
+      <IngInput inputStyle="width: 45%" label="First Name" placeholder="Enter your first name" bind:input={userData.firstName}></IngInput>
+      <IngInput inputStyle="width: 45%" label="Last Name" placeholder="Also your last name"></IngInput>
+      <IngInput inputStyle="width: 45%" type="date" label="Birthday" placeholder="mm/dd/yy"></IngInput>
+      <IngSelect selectStyle="width: 45%" label="Gender" items="Make,Female,Unspecified"></IngSelect>
+      <IngInput inputStyle="width: 45%" type="email" label="Email" placeholder="name@company.com"></IngInput>
+      <IngInput inputStyle="width: 45%" type="telephone" label="Phone" placeholder="+49 154343 3232"></IngInput>
       <div style="width: 100%;">
         <h3>Addresses</h3>
       </div>
-      <IngInput style="width: 70%" label="Address" placeholder="Enter your home address"></IngInput>
-      <IngInput style="width: 20%" label="Number" placeholder="No."></IngInput>
+      <IngInput inputStyle="width: 70%" label="Address" placeholder="Enter your home address"></IngInput>
+      <IngInput inputStyle="width: 20%" label="Number" placeholder="No."></IngInput>
     </div>
   </IngBuffet>
 </Story>

@@ -12,10 +12,22 @@
     },
     menuItems: {
       title: string,
-      url: string
+      url?: string,
+      event?: string
     }[]
   } = $props();
   
+  function sendEvent(name: string | undefined) {
+    if ($host() && name) {
+      // dispatch document event for easy client reading
+      document.dispatchEvent(
+        new CustomEvent(name, {
+          detail: {},
+        }),
+      );
+    }
+  }
+
 </script>
 
 <div class="menu_frame" style={`top: ${position.top}; left: ${position.left};`}>
@@ -23,7 +35,11 @@
   <div class="menu">
     {#each menuItems as item}
       <div class="menu_item">
-        <a href="https://google.com" target="_blank">{item.title}</a>
+        {#if item.url}
+          <a href={item.url}>{item.title}</a>
+        {:else}
+          <button class="menu_item_button" onclick={()=>sendEvent(item.event)}>{item.title}</button>
+        {/if}
       </div>
     {/each}
   </div>
@@ -73,5 +89,23 @@
   width: 100%;
   font-size: 18px;
   padding-bottom: 12px;
+  color: gray;
 }
+
+.menu_item a:link { text-decoration: none; color: gray; }
+.menu_item a:visited { text-decoration: none; color: #222;}
+.menu_item a:hover { text-decoration: none; color: darkgray}
+.menu_item a:active { text-decoration: none; }
+
+.menu_item_button {
+  background-color: transparent;
+  border: 0px;
+  font-size: 16px;
+}
+
+.menu_item_button:hover {
+  color: gray;
+  cursor: pointer;
+}
+
 </style>

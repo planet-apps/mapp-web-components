@@ -1,18 +1,51 @@
 <svelte:options customElement="ing-select" />
 
-<script>
+<script lang="ts">
   let {
     label = "",
     icon = "",
-    type="text",
     placeholder = "",
-    options = [],
+    items = "",
     input = $bindable(""),
-    style=""
+    selectStyle=""
+  }: {
+    label: string,
+    icon?: string,
+    placeholder?: string,
+    items: string,
+    input?: string,
+    selectStyle?: string
   } = $props();
+
+  let realItems: string[] = items.split(",");
+
+  const inputChanged = (e: any) => {
+    if (e && e.target && $host()) {
+      let inputValue = "";
+      if (e.target.value) inputValue = e.target.value;
+
+      // set inner value for web components
+      $host().innerText = inputValue;
+
+      // dispatch document event for easy client reading
+      document.dispatchEvent(
+        new CustomEvent("InputChangedEvent", {
+          detail: {
+            id: $host().id,
+            input: inputValue,
+          },
+        }),
+      );
+
+      // dispatch local element event, maybe also useful
+      $host().dispatchEvent(new CustomEvent("inputchanged", {detail: {
+        input: inputValue
+      }}));
+    }
+  };
 </script>
 
-<div style={style} class="input_frame">
+<div style={selectStyle} class="input_frame">
   {#if label}
     <div class="input_label">
       {label}
@@ -25,9 +58,9 @@
       </span>
     {/if}
 
-    <select class="input_field" {placeholder} bind:value={input}>
-      {#each options as option}
-        <option>{option}</option>
+    <select class="input_field" {placeholder} bind:value={input} oninput={(e) => {inputChanged(e)}}>
+      {#each realItems as item}
+        <option>{item}</option>
       {/each}
     </select>
   </div>

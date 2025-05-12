@@ -26,9 +26,12 @@
   if (activeitem) expandstate[activeitem] = true;
 
   let itemClick = (itemName: string) => {
+
+    let clickedItem = menuconfig.items.find((item: any) => item.title === itemName)
+
     if (!expandstate[itemName])
       expandstate[itemName] = true;
-    else
+    else if (clickedItem && (!clickedItem.url || clickedItem.url === "#"))
       expandstate[itemName] = !expandstate[itemName];
   };
 </script>

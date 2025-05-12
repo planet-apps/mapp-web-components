@@ -13,10 +13,10 @@
     tableRowClick = undefined,
   }: {
     tableHeaders: { name: string; displayName: string; searchable?: boolean, hideNarrow?: boolean }[];
-    tableRows: any[];
-    linkprefix: string;
-    linkcolumnname: string;
-    tableRowClick: undefined | ((e: { detail: { rowIndex: number } }) => void);
+    tableRows?: any[];
+    linkprefix?: string;
+    linkcolumnname?: string;
+    tableRowClick?: undefined | ((e: { detail: { rowIndex: number } }) => void);
   } = $props();
 
   if (typeof tableHeaders == "string") {
@@ -25,6 +25,18 @@
 
   if (typeof tableRows == "string") {
     tableRows = JSON.parse(tableRows);
+  }
+
+  if ((!tableHeaders || tableHeaders.length === 0) && tableRows && tableRows.length > 0) {
+    tableHeaders = [];
+    for (let key of Object.keys(tableRows[0])) {
+      tableHeaders.push({
+        name: key,
+        displayName: key,
+        searchable: true,
+        hideNarrow: false
+      });
+    }
   }
 
   let rowsDisplay: any[] = $state(tableRows);
